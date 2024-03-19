@@ -11,9 +11,9 @@
     <Window.Resources>
         <DataTemplate x:Key="listTemplate">
             <StackPanel Orientation="Horizontal" Margin="5">
-                <ComboBox ItemsSource="{Binding Сolumns}"/>
-                <Label Content="{Binding SelectField}"/>
-                <Button Content="Удалить"/>
+                <ComboBox ItemsSource="{Binding Fields}" SelectedItem="{Binding SelectedField}" />
+                <Label Content="{Binding SelectedField}"/>
+                <Button Content="Удалить"  Click="DeleteButton_Click" />
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -42,15 +42,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel x:Name="testtest">
-                <ListBox x:Name="DesignerListBox" ItemTemplate="{StaticResource listTemplate}" />
+                <ScrollViewer Grid.Row="0">
+                    <ListView x:Name="DesignerListBox" ItemTemplate="{StaticResource listTemplate}">
+                    </ListView>
+                </ScrollViewer>
             </StackPanel>
-
-            <!--<StackPanel x:Name="aboba" >
-                <ComboBox  x:Name="a1"/>
-                <ComboBox x:Name="a2"/>
-                <ComboBox x:Name="a3"/>
-                <ComboBox x:Name="a4"/>
-            </StackPanel>-->
         </Grid>
     </DockPanel>
 
