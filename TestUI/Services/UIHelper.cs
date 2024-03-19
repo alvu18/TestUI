@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace TestUI.Services
 {
-    internal class UIHelper
+    internal static class UIHelper
     {
-        public static IEnumerable<T> FindChildren<T>(DependencyObject parent) where T : DependencyObject
+        public static IEnumerable<T> FindChildrenTree<T>(DependencyObject parent) where T : DependencyObject
         {
             if (parent != null)
             {
@@ -23,12 +20,31 @@ namespace TestUI.Services
                         yield return tChild;
                     }
 
-                    foreach (var grandChild in FindChildren<T>(child))
+                    foreach (var grandChild in FindChildrenTree<T>(child))
                     {
                         yield return grandChild;
                     }
                 }
             }
+        }
+
+        public static List<string> GetSelectedStringsFromComboBoxes(IEnumerable<ComboBox> comboBoxes)
+        {
+            var selectedStrings = new List<string>();
+
+            foreach (var comboBox in comboBoxes)
+            {
+                if (comboBox.SelectedItem != null)
+                {
+                    selectedStrings.Add(comboBox.SelectedItem.ToString());
+                }
+                else
+                {
+                    selectedStrings.Add("");
+                }
+            }
+
+            return selectedStrings;
         }
     }
 }

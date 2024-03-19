@@ -9,15 +9,11 @@
         Width="800" Height="450">
 
     <Window.Resources>
-        <DataTemplate x:Key="MyItemTemplate1">
-            <StackPanel Orientation="Horizontal" >
-                <Button Content="удалить 1" Name="Delete_Button" Click="DeleteButton_Click"/>
-            </StackPanel>
-        </DataTemplate>
-
-        <DataTemplate x:Key="MyItemTemplate2">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="удалить 2" Name="Delete_Button" Click="DeleteButton_Click"/>
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <ComboBox ItemsSource="{Binding Сolumns}"/>
+                <Label Content="{Binding SelectField}"/>
+                <Button Content="Удалить"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -33,6 +29,7 @@
                 <MenuItem Header="Выход" Command="{StaticResource CloseWindowCommand}"/>
             </MenuItem>
             <MenuItem Header="Добавить" Click="MenuItem_Click"/>
+            <MenuItem Header="Сбор" Click="MenuItem_Click_1"/>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem DockPanel.Dock="Right">
@@ -41,12 +38,19 @@
             <StatusBarItem Content="{Binding Status}"/>
         </StatusBar>
         <Grid>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="myStackPanel" Orientation="Vertical">
-                    <ContentControl x:Name="myContentControl">
-                    </ContentControl>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="testtest">
+                <ListBox x:Name="DesignerListBox" ItemTemplate="{StaticResource listTemplate}" />
             </StackPanel>
-            </ScrollViewer>
+
+            <!--<StackPanel x:Name="aboba" >
+                <ComboBox  x:Name="a1"/>
+                <ComboBox x:Name="a2"/>
+                <ComboBox x:Name="a3"/>
+                <ComboBox x:Name="a4"/>
+            </StackPanel>-->
         </Grid>
     </DockPanel>
 
