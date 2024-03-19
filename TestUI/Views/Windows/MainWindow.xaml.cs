@@ -30,10 +30,7 @@ namespace TestUI
 
     public partial class MainWindow : Window
     {
-        public ObservableCollection<ElememntList> Columns { get; } = new ObservableCollection<ElememntList>
-            {
-            };
-
+        public ObservableCollection<ElememntList> Columns { get; } = new ObservableCollection<ElememntList>();
 
         public MainWindow()
         {
@@ -55,7 +52,7 @@ namespace TestUI
         {
             IEnumerable<ComboBox> comboBoxes = UIHelper.FindChildrenTree<ComboBox>(testtest);
 
-            List<string> strings  = UIHelper.GetSelectedStringsFromComboBoxes(comboBoxes);
+            List<string> strings = UIHelper.GetSelectedStringsFromComboBoxes(comboBoxes);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -67,6 +64,7 @@ namespace TestUI
             // Find the parent container of the StackPanel
             var parentContainer = stackPanel.Parent;
 
+            stackPanel.Children.Clear();
         }
 
 
