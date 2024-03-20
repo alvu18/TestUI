@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using TestUI.Services;
 
 namespace TestUI
@@ -25,9 +27,6 @@ namespace TestUI
         }
     }
 
-
-
-
     public partial class MainWindow : Window
     {
         public ObservableCollection<ElememntList> Columns { get; } = new ObservableCollection<ElememntList>();
@@ -35,6 +34,10 @@ namespace TestUI
         public MainWindow()
         {
             InitializeComponent();
+
+            ElememntList elememntList = new ElememntList();
+
+            Columns.Add(elememntList);
 
             DesignerListBox.ItemsSource = Columns;
 
@@ -57,18 +60,17 @@ namespace TestUI
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // Find the parent StackPanel of the button that was clicked
-            var button = (Button)sender;
-            var stackPanel = (StackPanel)button.Parent;
+            DependencyObject originalSource = e.OriginalSource as DependencyObject;
 
-            // Find the parent container of the StackPanel
-            var parentContainer = stackPanel.Parent;
+            ListViewItem clickedItem = UIHelper.FindVisualParent<ListViewItem>(originalSource);
 
-            stackPanel.Children.Clear();
+            var element = clickedItem.Content as ElememntList;
+
+            if (element != null)
+            {
+                Columns.Remove(element);
+            }
         }
-
-
-
 
     }
 }

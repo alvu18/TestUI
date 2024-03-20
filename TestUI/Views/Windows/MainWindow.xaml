@@ -42,7 +42,6 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Grid.Row="0">
-                
                 <StackPanel x:Name="testtest">
                     <ListView x:Name="DesignerListBox" ItemTemplate="{StaticResource listTemplate}">
                     </ListView>

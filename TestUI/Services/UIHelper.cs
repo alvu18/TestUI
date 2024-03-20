@@ -28,6 +28,20 @@ namespace TestUI.Services
             }
         }
 
+
+        public static T FindVisualParent<T>(DependencyObject obj) where T : DependencyObject
+        {
+            while (obj != null)
+            {
+                if (obj is T parent)
+                {
+                    return parent;
+                }
+                obj = VisualTreeHelper.GetParent(obj);
+            }
+            return null;
+        }
+
         public static List<string> GetSelectedStringsFromComboBoxes(IEnumerable<ComboBox> comboBoxes)
         {
             var selectedStrings = new List<string>();
