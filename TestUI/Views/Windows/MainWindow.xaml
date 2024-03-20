@@ -43,7 +43,7 @@
             </Grid.ColumnDefinitions>
             <ScrollViewer Grid.Row="0">
                 <StackPanel x:Name="testtest">
-                    <ListView x:Name="DesignerListBox" ItemTemplate="{StaticResource listTemplate}">
+                    <ListView x:Name="DesignerListBox" ItemTemplate="{StaticResource listTemplate}"  PreviewMouseDown ="UIelement_MouseDown" MouseUp="UIelement_MouseUp">
                     </ListView>
                 </StackPanel>
             </ScrollViewer>
