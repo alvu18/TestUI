@@ -109,16 +109,23 @@ namespace TestUI
         {
             DependencyObject originalSource = e.OriginalSource as DependencyObject;
 
-            ListViewItem MouseUpItem = UIHelper.FindVisualParent<ListViewItem>(originalSource) ;
-
-            var element1 = MouseUpItem.Content as ElememntList;
-
-            var element2 = swapItem.Content as ElememntList;
+            ListViewItem? MouseUpItem = UIHelper.FindVisualParent<ListViewItem>(originalSource);
 
             if (MouseUpItem != null)
             {
-                ListExtensions.Swap(Columns, element1, element2);
+                ElememntList? element1 = MouseUpItem.Content as ElememntList;
+
+                if (swapItem != null)
+                {
+                    ElememntList? element2 = swapItem.Content as ElememntList;
+
+                    if (element1 != null && element2 != null)
+                    {
+                        ListExtensions.Swap(Columns, element1, element2);
+                    }
+                }
             }
         }
+
     }
 }
