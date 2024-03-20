@@ -103,6 +103,7 @@ namespace TestUI
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             Columns.Clear();
+
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
