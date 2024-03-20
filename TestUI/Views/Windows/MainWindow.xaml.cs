@@ -49,11 +49,27 @@ namespace TestUI
 
             list[index2] = temp;
         }
+
+        public static void Add(this ObservableCollection<ElememntList> list, ElememntList elementIsMouseOver)
+        {
+            ElememntList element = list.FirstOrDefault(x => x.Guid == elementIsMouseOver.Guid);
+
+            int index2 = list.IndexOf(element);
+
+            if (index2 < 0)
+            {
+                throw new ArgumentException("Один или оба элемента не найдены в списке.");
+            }
+            else
+            {
+                list.Insert(index2 + 1, new ElememntList()); 
+            }
+        }
     }
 
     public partial class MainWindow : Window
     {
-        public ListViewItem swapItem = new ListViewItem();
+        public ListViewItem selectItem = new ListViewItem();
 
         public ObservableCollection<ElememntList> Columns { get; } = new ObservableCollection<ElememntList>();
 
@@ -70,11 +86,13 @@ namespace TestUI
             this.DataContext = this;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
             ElememntList elememnt = new();
 
-            Columns.Add(elememnt);
+            ListExtensions.Add(Columns, selectItem.Content as ElememntList);
+
+            //Columns.Add(elememnt);
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -102,7 +120,7 @@ namespace TestUI
         {
             DependencyObject originalSource = e.OriginalSource as DependencyObject;
 
-            swapItem = UIHelper.FindVisualParent<ListViewItem>(originalSource);
+            selectItem = UIHelper.FindVisualParent<ListViewItem>(originalSource);
         }
 
         private void UIelement_MouseUp(object sender, MouseButtonEventArgs e)
@@ -115,9 +133,9 @@ namespace TestUI
             {
                 ElememntList? element1 = MouseUpItem.Content as ElememntList;
 
-                if (swapItem != null)
+                if (selectItem != null)
                 {
-                    ElememntList? element2 = swapItem.Content as ElememntList;
+                    ElememntList? element2 = selectItem.Content as ElememntList;
 
                     if (element1 != null && element2 != null)
                     {
