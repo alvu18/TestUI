@@ -31,8 +31,10 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход" Command="{StaticResource CloseWindowCommand}"/>
             </MenuItem>
-            <MenuItem Header="Добавить" Click="Add_Click"/>
             <MenuItem Header="Сбор" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Добавить" Click="Add_Click_New"/>
+            <MenuItem Header="Очистить" Click="Clear_Click"/>
+            <MenuItem Header="Выгрузка" Click="Unload_Click"/>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem DockPanel.Dock="Right">

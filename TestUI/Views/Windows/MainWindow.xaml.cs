@@ -91,8 +91,18 @@ namespace TestUI
             ElememntList elememnt = new();
 
             ListExtensions.Add(Columns, selectItem.Content as ElememntList);
+        }
 
-            //Columns.Add(elememnt);
+        private void Add_Click_New(object sender, RoutedEventArgs e)
+        {
+            ElememntList elememnt = new();
+
+            Columns.Add(elememnt);
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            Columns.Clear();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -145,5 +155,21 @@ namespace TestUI
             }
         }
 
+        private void Unload_Click(object sender, RoutedEventArgs e)
+        {
+            Columns.Clear();
+
+            List<string> FileColumns = new List<string>() { "ID", "№ дела", "Истец" };
+
+            for (int i = 0; i < FileColumns.Count; i++)
+            {
+                ElememntList elememnt = new();
+
+                elememnt.SelectedField = FileColumns[i];
+
+                Columns.Add(elememnt);
+            }
+
+        }
     }
 }
